@@ -15,6 +15,12 @@ class State:
         self.boat_pos = boat_pos
         self.boat = boat
 
+        # self.temp_r_m = right_m
+        # self.temp_r_c = right_c
+        # self.temp_l_m = l
+        # self.temp_r_m = right_m
+
+
     def __str__(self):
       return "\nLeft:(Cannibals: " + str(self.left_c) + " Missionaries: " + str(self.left_m) + ")\nRight:(Cannibals: " + str(self.right_c) + " Missionaries: " + str(self.right_m) + ")\n "
 

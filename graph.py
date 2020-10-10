@@ -17,25 +17,59 @@ class Graph:
     existingStates.append(start)
     self.DFS(start, 0, existingStates)
 
+
   # recursive depth first search to traverse to the goal state
   def DFS(self, currState, depth, existingStates):
     
     depth+=1
-    sleep(1)
+    # sleep(1)
     if currState.isGoalState():
       return True
     else:
-      next_states = currState.next_state_generator()
+      next_states = self.next_state_generator(currState)
       for temp_state in next_states:
         existingStates.append(temp_state)
-        for check_state in existingStates:
-          if check_state.left_c == temp_state.left_c and check_state.left_m == temp_state.left_m and check_state.right_c == temp_state.right_c and check_state.right_m == temp_state.right_m and check_state.boat == temp_state.boat:
-            print('Current node: ', str(temp_state), '\nDepth :', depth)
-            self.DFS(temp_state, depth, existingStates)
+        # print(existingStates)
+      for check_state in existingStates:
+        if not check_state.left_c == temp_state.left_c and not check_state.left_m == temp_state.left_m and not check_state.right_c == temp_state.right_c and not check_state.right_m == temp_state.right_m and not check_state.boat == temp_state.boat:
+          # print('Current node: ', str(temp_state), '\nDepth :', depth)
+          self.DFS(temp_state, depth, existingStates)
     return False  
   
-  def next_state_generator():
-    
+  def next_state_generator(self, aState):
+    states_array = []
+    for cannibal in range(aState.boat):
+      for missionary in range(aState.boat):
+        # we will make sure boat is possible here
+        if missionary + cannibal <= aState.boat and missionary >= cannibal and missionary + cannibal > 0:
+            
+          aState.temp_l_c = aState.left_c
+          aState.temp_l_m = aState.left_m
+          aState.temp_r_c = aState.right_c
+          aState.temp_r_m = aState.right_m
+          aState.temp_pos = aState.boat_pos
+
+          if aState.boat_pos == "right":
+            aState.temp_r_m -= missionary
+            aState.temp_r_c -= cannibal
+            aState.temp_l_m += missionary
+            aState.temp_l_c += cannibal
+            aState.temp_pos = "left"
+            
+          elif aState.boat_pos == "left":
+            aState.temp_r_m += missionary
+            aState.temp_r_c += cannibal
+            aState.temp_l_m -= missionary
+            aState.temp_l_c -= cannibal
+            aState.temp_pos = "right"
+          
+          add_state = State(aState.temp_l_c, aState.temp_l_m,aState.temp_r_c,aState.temp_r_m, aState.temp_pos, aState.boat)
+
+          if add_state.check_possible():
+            print(add_state)
+            states_array.append(add_state)
+    return states_array
+
 
 
 """
