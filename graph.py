@@ -2,75 +2,37 @@ from state import State
 from time import sleep
 
 class Graph:
-  
-  def __init__(self):
-    G = nx.Graph()
-    
-  # Function for adding a node to the graph
-  def add_to_graph(self, starting_vertex, neighbor_vertex):
-    G.add_node(neighbor_vertex)
-    G.add_edge(starting_vertex, neighbor_vertex)
-  
   def DFS_start(self, number, boat_capacity):
+    final_string = []
     existingStates = []
     start = State(number, number, 0, 0, "left", boat_capacity)
-    self.DFS(start, 0, existingStates)
+    goal_state_id = self.id_func(State(0, 0, number, number, "right", boat_capacity))
+    self.DFS(start, 0, existingStates, goal_state_id, final_string)
+    for i in range(len(final_string)-1, -1, -1):
+      print(final_string[i])
 
   # recursive depth first search to traverse to the goal state
-  def DFS(self, currState, depth, existingStates):
-    depth+=1
-    existingStates.append(currState)
+  def DFS(self, currState, depth, existingStates, goal_state_id, final_string):
+    depth += 1
+    next_states = self.next_state_gen(currState)
     # sleep(1)
-    if currState.isGoalState():
+    if self.id_func(currState) == goal_state_id:
+      next_states = []
       return True
     else:
-      next_states = self.buraks_next_state_gen(currState)
-      # print(next_states)
+      existingStates.append(self.id_func(currState))
+      for check_state in next_states:
+        if self.id_func(check_state) in existingStates:
+          next_states.remove(check_state)
       for temp_state in next_states:
-        # print(temp_state)
-        # print(existingStates)
-        for check_state in existingStates:
-          print(check_state)
-          if not check_state.left_c == temp_state.left_c and not check_state.left_m == temp_state.left_m and not check_state.right_c == temp_state.right_c and not check_state.right_m == temp_state.right_m and not check_state.boat == temp_state.boat:
-            print('Current node: ', str(temp_state), '\nDepth :', depth)
-            self.DFS(temp_state, depth, existingStates)
-    return False  
+        if self.id_func(temp_state) not in existingStates:
+          if self.DFS(temp_state, depth, existingStates, goal_state_id, final_string):
+            constructed_str = "\nDepth:" + str(depth) + "\nCurrent Node: " + str(temp_state) 
+            final_string.append(constructed_str)
+            return True
+    return False
   
-  def next_state_generator(self, aState):
-    states_array = []
-    for cannibal in range(aState.boat):
-      for missionary in range(aState.boat):
-        # we will make sure boat is possible here
-        if missionary + cannibal <= aState.boat and missionary >= cannibal and missionary + cannibal > 0:
-            
-          aState.temp_l_c = aState.left_c
-          aState.temp_l_m = aState.left_m
-          aState.temp_r_c = aState.right_c
-          aState.temp_r_m = aState.right_m
-          aState.temp_pos = aState.boat_pos
-
-          if aState.boat_pos == "right":
-            aState.temp_r_m -= missionary
-            aState.temp_r_c -= cannibal
-            aState.temp_l_m += missionary
-            aState.temp_l_c += cannibal
-            aState.temp_pos = "left"
-            
-          elif aState.boat_pos == "left":
-            aState.temp_r_m += missionary
-            aState.temp_r_c += cannibal
-            aState.temp_l_m -= missionary
-            aState.temp_l_c -= cannibal
-            aState.temp_pos = "right"
-          
-          add_state = State(aState.temp_l_c, aState.temp_l_m,aState.temp_r_c,aState.temp_r_m, aState.temp_pos, aState.boat)
-
-          if add_state.check_possible():
-            states_array.append(add_state)
-            
-    return states_array
-
-  def buraks_next_state_gen(self, passed_state):
+  def next_state_gen(self, passed_state):
     states_array = []
     if passed_state.boat_pos == "left":
       multiplier = -1
@@ -85,16 +47,17 @@ class Graph:
             left_m = multiplier * missionary
             right_c = -(multiplier) * cannibal
             right_m = -(multiplier) * missionary
-            # print("leftc", left_c, "leftm", left_m)
-            # print("rightc", right_c, "right", right_m)
             add_state = State(passed_state.left_c + left_c, passed_state.left_m + left_m, passed_state.right_c + right_c, passed_state.right_m + right_m, new_boat_pos, passed_state.boat)
-            # print(str(add_state))
             if add_state.check_possible():
-              # print(str(add_state))
               states_array.append(add_state)
     return states_array
             
-
+  # identification function to identify known nodes 
+  # works by concatenating the state missionary, 
+  # cannibal and boat position values one after the other
+  def id_func(self, passed_state):
+    constructed_str = str(passed_state.left_c) + str(passed_state.left_m) + str(passed_state.right_c) + str(passed_state.right_m) + str(passed_state.boat_pos)
+    return constructed_str
 
 
 """

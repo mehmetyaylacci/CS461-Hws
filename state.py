@@ -1,10 +1,4 @@
 class State:
-    # temp values to help us initiate newer State objects
-    temp_r_m = 0
-    temp_r_c = 0
-    temp_l_m = 0
-    temp_l_c = 0
-    temp_pos = ""
 
     # when we are comparing, compare people and the boat_pos
     def __init__(self, left_c, left_m, right_c, right_m, boat_pos, boat):
@@ -36,38 +30,9 @@ class State:
         else:
           return False
 
-    # this will create the neighbor states however, we need to check
-    # if possible
-    def next_state_generator(self):
-        for cannibal in range(self.boat):
-            for missionary in range(self.boat):
-
-                # we will make sure boat is possible here
-                if missionary + cannibal <= self.boat and missionary >= cannibal:
-                    
-                    if self.boat_pos == "right":
-                        self.temp_r_m -= missionary
-                        self.temp_r_c -= cannibal
-                        self.temp_l_m += missionary
-                        self.temp_l_c += cannibal
-                        self.temp_pos = "left"
-
-                        yield State(self.temp_l_c, self.temp_l_m, self.temp_r_c, 
-                            self.temp_r_m, self.temp_pos, self.boat)
-                    
-                    elif self.boat_pos == "left":
-                        self.temp_r_m += missionary
-                        self.temp_r_c += cannibal
-                        self.temp_l_m -= missionary
-                        self.temp_l_c -= cannibal
-                        self.temp_pos = "right"
-
-                        yield State(self.temp_l_c, self.temp_l_m, self.temp_r_c, 
-                            self.temp_r_m, self.temp_pos, self.boat)
-    
     # check if the 'self' state is the goal state
     def isGoalState(self):
-      if self.left_c == 0 and self.left_m == 0: 
+      if self.left_c == 0 and self.left_m == 0 and self.right_c == 3 and self.right_m == 3: 
         return True
       else: 
         return False
