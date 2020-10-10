@@ -19,4 +19,4 @@ plt.show()
 """
 
 #firstState = state.State(3, 3, 0, 0, "left", 0)
-start_working = graph.Graph().DFS_start(5, 3)
+start_working = graph.Graph().DFS_start(3, 2)

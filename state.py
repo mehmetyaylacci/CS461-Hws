@@ -25,11 +25,17 @@ class State:
       return "\nLeft:(Cannibals: " + str(self.left_c) + " Missionaries: " + str(self.left_m) + ")\nRight:(Cannibals: " + str(self.right_c) + " Missionaries: " + str(self.right_m) + ")\n "
 
     def check_possible(self):
-        if self.left_c > self.left_m or self.right_c > self.right_m:
-            return False
+        if self.right_m < 0 or self.left_m < 0 or self.right_c < 0 or self.right_m < 0:
+          return False
+        elif self.left_c > self.left_m and self.left_m == 0:
+          return True
+        elif self.right_c > self.right_m and self.right_m == 0:
+          return True 
+        elif self.right_m == self.right_c and self.left_m == self.left_c:
+          return True
         else:
-            return True
-    
+          return False
+
     # this will create the neighbor states however, we need to check
     # if possible
     def next_state_generator(self):
@@ -64,4 +70,4 @@ class State:
       if self.left_c == 0 and self.left_m == 0: 
         return True
       else: 
-        return False  
+        return False

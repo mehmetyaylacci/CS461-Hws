@@ -26,13 +26,15 @@ class Graph:
     if currState.isGoalState():
       return True
     else:
-      next_states = self.next_state_generator(currState)
+      next_states = self.buraks_next_state_gen(currState)
+      # print(next_states)
       for temp_state in next_states:
+        print(temp_state)
         existingStates.append(temp_state)
         # print(existingStates)
       for check_state in existingStates:
         if not check_state.left_c == temp_state.left_c and not check_state.left_m == temp_state.left_m and not check_state.right_c == temp_state.right_c and not check_state.right_m == temp_state.right_m and not check_state.boat == temp_state.boat:
-          # print('Current node: ', str(temp_state), '\nDepth :', depth)
+          print('Current node: ', str(temp_state), '\nDepth :', depth)
           self.DFS(temp_state, depth, existingStates)
     return False  
   
@@ -66,9 +68,34 @@ class Graph:
           add_state = State(aState.temp_l_c, aState.temp_l_m,aState.temp_r_c,aState.temp_r_m, aState.temp_pos, aState.boat)
 
           if add_state.check_possible():
-            print(add_state)
             states_array.append(add_state)
+            
     return states_array
+
+  def buraks_next_state_gen(self, passed_state):
+    states_array = []
+    if passed_state.boat_pos == "left":
+      multiplier = -1
+      new_boat_pos = "right"
+    else:
+      multiplier = 1
+      new_boat_pos = "left"
+    for cannibal in range(0, passed_state.boat + 1):
+      for missionary in range(0, passed_state.boat + 1):
+        if missionary + cannibal <=  passed_state.boat and missionary + cannibal > 0:
+            left_c = multiplier * cannibal
+            left_m = multiplier * missionary
+            right_c = -(multiplier) * cannibal
+            right_m = -(multiplier) * missionary
+            # print("leftc", left_c, "leftm", left_m)
+            # print("rightc", right_c, "right", right_m)
+            add_state = State(passed_state.left_c + left_c, passed_state.left_m + left_m, passed_state.right_c + right_c, passed_state.right_m + right_m, new_boat_pos, passed_state.boat)
+            # print(str(add_state))
+            if add_state.check_possible():
+              # print(str(add_state))
+              states_array.append(add_state)
+    return states_array
+            
 
 
 
