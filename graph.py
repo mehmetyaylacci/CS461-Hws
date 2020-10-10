@@ -3,25 +3,23 @@ from time import sleep
 
 class Graph:
   
-  # G = nx.Graph()
-  # def __init__(self):
+  def __init__(self):
+    G = nx.Graph()
     
   # Function for adding a node to the graph
-  # def add_to_graph(self, starting_vertex, neighbor_vertex):
-  #    G.add_node(neighbor_vertex)
-  #    G.add_edge(starting_vertex, neighbor_vertex)
+  def add_to_graph(self, starting_vertex, neighbor_vertex):
+    G.add_node(neighbor_vertex)
+    G.add_edge(starting_vertex, neighbor_vertex)
   
   def DFS_start(self, number, boat_capacity):
     existingStates = []
     start = State(number, number, 0, 0, "left", boat_capacity)
-    existingStates.append(start)
     self.DFS(start, 0, existingStates)
-
 
   # recursive depth first search to traverse to the goal state
   def DFS(self, currState, depth, existingStates):
-    
     depth+=1
+    existingStates.append(currState)
     # sleep(1)
     if currState.isGoalState():
       return True
@@ -29,13 +27,13 @@ class Graph:
       next_states = self.buraks_next_state_gen(currState)
       # print(next_states)
       for temp_state in next_states:
-        print(temp_state)
-        existingStates.append(temp_state)
+        # print(temp_state)
         # print(existingStates)
-      for check_state in existingStates:
-        if not check_state.left_c == temp_state.left_c and not check_state.left_m == temp_state.left_m and not check_state.right_c == temp_state.right_c and not check_state.right_m == temp_state.right_m and not check_state.boat == temp_state.boat:
-          print('Current node: ', str(temp_state), '\nDepth :', depth)
-          self.DFS(temp_state, depth, existingStates)
+        for check_state in existingStates:
+          print(check_state)
+          if not check_state.left_c == temp_state.left_c and not check_state.left_m == temp_state.left_m and not check_state.right_c == temp_state.right_c and not check_state.right_m == temp_state.right_m and not check_state.boat == temp_state.boat:
+            print('Current node: ', str(temp_state), '\nDepth :', depth)
+            self.DFS(temp_state, depth, existingStates)
     return False  
   
   def next_state_generator(self, aState):
