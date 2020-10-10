@@ -1,8 +1,10 @@
-import networkx as nx
-import state
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
+import graph
 
-a = state.State(2,2,2,2,"left",2,2)
+"""
+import Graph
+
+
 
 G = nx.Graph()
 
@@ -14,3 +16,7 @@ G.add_edge(a,2)
 nx.draw(G)
 plt.draw()
 plt.show()
+"""
+
+#firstState = state.State(3, 3, 0, 0, "left", 0)
+start_working = graph.Graph().DFS_start(3, 2)
