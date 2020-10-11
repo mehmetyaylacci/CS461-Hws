@@ -1,5 +1,4 @@
 from state import State
-from time import sleep
 
 class Graph:
   def DFS_start(self, number, boat_capacity):
@@ -15,7 +14,6 @@ class Graph:
   def DFS(self, currState, depth, existingStates, goal_state_id, final_string):
     depth += 1
     next_states = self.next_state_gen(currState)
-    # sleep(1)
     if self.id_func(currState) == goal_state_id:
       next_states = []
       return True
@@ -28,6 +26,7 @@ class Graph:
         if self.id_func(check_state) in existingStates:
           next_states.remove(check_state)
       for temp_state in next_states:
+        # print(str(temp_state))
         if self.id_func(temp_state) not in existingStates:
           if self.DFS(temp_state, depth, existingStates, goal_state_id, final_string):
             constructed_str = "\nDepth:" + str(depth) + "\nCurrent Node: " + str(temp_state) 
@@ -56,7 +55,7 @@ class Graph:
             if add_state.check_possible():
               states_array.append(add_state)
     return states_array
-            
+
   # identification function to identify known nodes 
   # works by concatenating the state missionary, 
   # cannibal and boat position values one after the other
@@ -65,12 +64,3 @@ class Graph:
   def id_func(self, passed_state):
     constructed_str = str(passed_state.left_c) + str(passed_state.left_m) + str(passed_state.right_c) + str(passed_state.right_m) + str(passed_state.boat_pos)
     return constructed_str
-
-
-"""
-    empty() – Returns whether the stack is empty – Time Complexity : O(1)
-    size() – Returns the size of the stack – Time Complexity : O(1)
-    top() – Returns a reference to the top most element of the stack – Time Complexity : O(1)
-    push(g) – Adds the element ‘g’ at the top of the stack – Time Complexity : O(1)
-    pop() – Deletes the top most element of the stack – Time Complexity : O(1)
-"""
