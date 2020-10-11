@@ -19,6 +19,9 @@ class Graph:
     if self.id_func(currState) == goal_state_id:
       next_states = []
       return True
+    elif depth == 1 and currState.left_c + currState.left_m <= currState.boat:
+      print("The boat capacity is enough to carry all the passengers at once.")
+      return True
     else:
       existingStates.append(self.id_func(currState))
       for check_state in next_states:
@@ -32,6 +35,8 @@ class Graph:
             return True
     return False
   
+  # next state generator that generates every possible path BUT
+  # only considers the ones that point towards the solution
   def next_state_gen(self, passed_state):
     states_array = []
     if passed_state.boat_pos == "left":
@@ -55,6 +60,8 @@ class Graph:
   # identification function to identify known nodes 
   # works by concatenating the state missionary, 
   # cannibal and boat position values one after the other
+  # allows the program to check for repeated steps 
+  # (with this algorithm, a step is NEVER repeated)
   def id_func(self, passed_state):
     constructed_str = str(passed_state.left_c) + str(passed_state.left_m) + str(passed_state.right_c) + str(passed_state.right_m) + str(passed_state.boat_pos)
     return constructed_str
