@@ -1,3 +1,7 @@
+# @authors: 
+# Burak Turksever
+# Mehmet Yaylaci
+# Eralp Kumbasar
 import graph
 
 choice = str(input("Would you like to run the program with the default data? (yes/no)"))
@@ -5,9 +9,12 @@ if choice.upper() == 'YES':
   solver = graph.Graph()
   print("3 Cannibals 3 Missionaries and a Boat of Capacity 2")
   solver.DFS_start(3, 2)
+  # Question 1 answer
   print("5 Cannibals 5 Missionaries and a Boat of Capacity 3")
   solver.DFS_start(5, 3)
+  # Question 2a answer
   print("6 Cannibals 6 Missionaries and a Boat of Capacity 4")
+  # Question 2b answer 
   solver.DFS_start(6, 4)
   print("6 Cannibals 6 Missionaries and a Boat of Capacity 5")
   solver.DFS_start(6, 5)
@@ -17,7 +24,7 @@ elif choice.upper() == 'NO':
     if input_one.upper() == 'EXIT':
       break
     else:
-      if input_one.isnumeric():
+      if input_one.isnumeric() and int(input_one) <= 494:
         number = int(input_one)
         input_two = str(input('Please enter the capacity of the boat: '))
         if input_two.isnumeric():
@@ -29,6 +36,8 @@ elif choice.upper() == 'NO':
             print('\nThis combination will not work! See why on https://arxiv.org/pdf/1802.09369.pdf\n')
         else:
           print('Please enter a valid number.')  
+      elif input_one.isnumeric() and int(input_one)>494:
+        print("The entered number is too large (recursion limit of Python is reached when executed.)")
       else:
         print('Please enter a valid number.')
 else:

@@ -1,6 +1,13 @@
+# @authors: 
+# Burak Turksever
+# Mehmet Yaylaci
+# Eralp Kumbasar
 from state import State
 
 class Graph:
+
+  # the function that initiates the seach with the given number of
+  # cannibals and missionaries as well as the capacity of the boat 
   def DFS_start(self, number, boat_capacity):
     final_string = []
     existingStates = []
@@ -11,6 +18,14 @@ class Graph:
       print(final_string[i])
 
   # recursive depth first search to traverse to the goal state
+  # uses the id_func function to understand if the currState (current state)
+  # object already has been visited and removes the newly generated
+  # next state objects that are redundant/repeated
+  # afterwards, the function initiates itself (recurses) using the chosen
+  # next state until a goal state is found
+  # only the nodes that lead to the answer are printed
+  # limitations: Python has a recursion depth limit hence we can not have more
+  # than 494 missionaries and cannibals at once
   def DFS(self, currState, depth, existingStates, goal_state_id, final_string):
     depth += 1
     next_states = self.next_state_gen(currState)
@@ -35,7 +50,11 @@ class Graph:
     return False
   
   # next state generator that generates every possible path BUT
-  # only considers the ones that point towards the solution
+  # only considers the ones that point towards the solution and
+  # those that are valid
+  # possible improvements: reversing the generation so that
+  # the amount of missionaries and cannibals in the first outputted
+  # generation is maximized
   def next_state_gen(self, passed_state):
     states_array = []
     if passed_state.boat_pos == "left":
@@ -58,8 +77,8 @@ class Graph:
 
   # identification function to identify known nodes 
   # works by concatenating the state missionary, 
-  # cannibal and boat position values one after the other
-  # allows the program to check for repeated steps 
+  # cannibal and boat position values one after the other.
+  # it allows the program to check for repeated steps 
   # (with this algorithm, a step is NEVER repeated)
   def id_func(self, passed_state):
     constructed_str = str(passed_state.left_c) + str(passed_state.left_m) + str(passed_state.right_c) + str(passed_state.right_m) + str(passed_state.boat_pos)

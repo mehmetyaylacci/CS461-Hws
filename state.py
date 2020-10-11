@@ -1,6 +1,13 @@
+# @authors: 
+# Burak Turksever
+# Mehmet Yaylaci
+# Eralp Kumbasar
 class State:
 
-    # when we are comparing, compare people and the boat_pos
+    # constructor of the state class
+    # takes the parameters: left Cannibals, left Missionaries,
+    # right Cannibals right Missionaries, position of the boat
+    # and the capacity of the boat 
     def __init__(self, left_c, left_m, right_c, right_m, boat_pos, boat):
         self.left_c = left_c
         self.left_m = left_m
@@ -14,10 +21,14 @@ class State:
         # self.temp_l_m = l
         # self.temp_r_m = right_m
 
-
+    # toString function to get a nicely visualized output from
+    # the state objects
     def __str__(self):
       return "\nLeft:(Cannibals: " + str(self.left_c) + " Missionaries: " + str(self.left_m) + ")\nRight:(Cannibals: " + str(self.right_c) + " Missionaries: " + str(self.right_m) + ")\n "
 
+    # the function used to check if a state is possible or not
+    # gets rid of the negative states and states in which the
+    # Cannibals outnumber the Missionaries
     def check_possible(self):
         if self.right_m < 0 or self.left_m < 0 or self.right_c < 0 or self.right_m < 0:
           return False
@@ -31,6 +42,8 @@ class State:
           return False
 
     # check if the 'self' state is the goal state
+    # hence check if all the Missionaries and Cannibals
+    # passed to the right side of the river
     def isGoalState(self):
       if self.left_c == 0 and self.left_m == 0 and self.right_c == 3 and self.right_m == 3: 
         return True
