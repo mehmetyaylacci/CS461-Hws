@@ -42,3 +42,349 @@ elif choice.upper() == 'NO':
         print('Please enter a valid number.')
 else:
   print('Unrecognized input')
+
+
+
+'''
+-------------------------------------------------------
+           OUTPUT THAT ANSWERS THE QUESTIONS
+-------------------------------------------------------
+
+5 Cannibals 5 Missionaries and a Boat of Capacity 3 (Question 1)
+
+Depth:1
+Current Node: 
+Left:(Cannibals: 4 Missionaries: 4)
+Right:(Cannibals: 1 Missionaries: 1)
+ 
+
+Depth:2
+Current Node: 
+Left:(Cannibals: 4 Missionaries: 5)
+Right:(Cannibals: 1 Missionaries: 0)
+ 
+
+Depth:3
+Current Node: 
+Left:(Cannibals: 3 Missionaries: 3)
+Right:(Cannibals: 2 Missionaries: 2)
+ 
+
+Depth:4
+Current Node: 
+Left:(Cannibals: 3 Missionaries: 5)
+Right:(Cannibals: 2 Missionaries: 0)
+ 
+
+Depth:5
+Current Node: 
+Left:(Cannibals: 1 Missionaries: 5)
+Right:(Cannibals: 4 Missionaries: 0)
+ 
+
+Depth:6
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 5)
+Right:(Cannibals: 3 Missionaries: 0)
+ 
+
+Depth:7
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 2)
+Right:(Cannibals: 3 Missionaries: 3)
+ 
+
+Depth:8
+Current Node: 
+Left:(Cannibals: 3 Missionaries: 3)
+Right:(Cannibals: 2 Missionaries: 2)
+ 
+
+Depth:9
+Current Node: 
+Left:(Cannibals: 3 Missionaries: 0)
+Right:(Cannibals: 2 Missionaries: 5)
+ 
+
+Depth:10
+Current Node: 
+Left:(Cannibals: 4 Missionaries: 0)
+Right:(Cannibals: 1 Missionaries: 5)
+ 
+
+Depth:11
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 0)
+Right:(Cannibals: 3 Missionaries: 5)
+ 
+
+Depth:12
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 2)
+Right:(Cannibals: 3 Missionaries: 3)
+ 
+
+Depth:13
+Current Node: 
+Left:(Cannibals: 1 Missionaries: 0)
+Right:(Cannibals: 4 Missionaries: 5)
+ 
+
+Depth:14
+Current Node: 
+Left:(Cannibals: 1 Missionaries: 1)
+Right:(Cannibals: 4 Missionaries: 4)
+ 
+
+Depth:15
+Current Node: 
+Left:(Cannibals: 0 Missionaries: 0)
+Right:(Cannibals: 5 Missionaries: 5)
+
+-------------------------------------------------------
+
+6 Cannibals 6 Missionaries and a Boat of Capacity 4 (Question 2a)
+
+Depth:1
+Current Node: 
+Left:(Cannibals: 5 Missionaries: 5)
+Right:(Cannibals: 1 Missionaries: 1)
+Current Boat Position: right
+
+
+Depth:2
+Current Node: 
+Left:(Cannibals: 5 Missionaries: 6)
+Right:(Cannibals: 1 Missionaries: 0)
+Current Boat Position: left
+
+
+Depth:3
+Current Node: 
+Left:(Cannibals: 4 Missionaries: 4)
+Right:(Cannibals: 2 Missionaries: 2)
+Current Boat Position: right
+
+
+Depth:4
+Current Node: 
+Left:(Cannibals: 4 Missionaries: 6)
+Right:(Cannibals: 2 Missionaries: 0)
+Current Boat Position: left
+
+
+Depth:5
+Current Node: 
+Left:(Cannibals: 3 Missionaries: 3)
+Right:(Cannibals: 3 Missionaries: 3)
+Current Boat Position: right
+
+
+Depth:6
+Current Node: 
+Left:(Cannibals: 3 Missionaries: 6)
+Right:(Cannibals: 3 Missionaries: 0)
+Current Boat Position: left
+
+
+Depth:7
+Current Node: 
+Left:(Cannibals: 1 Missionaries: 6)
+Right:(Cannibals: 5 Missionaries: 0)
+Current Boat Position: right
+
+
+Depth:8
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 6)
+Right:(Cannibals: 4 Missionaries: 0)
+Current Boat Position: left
+
+
+Depth:9
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 2)
+Right:(Cannibals: 4 Missionaries: 4)
+Current Boat Position: right
+
+
+Depth:10
+Current Node: 
+Left:(Cannibals: 3 Missionaries: 3)
+Right:(Cannibals: 3 Missionaries: 3)
+Current Boat Position: left
+
+
+Depth:11
+Current Node: 
+Left:(Cannibals: 3 Missionaries: 0)
+Right:(Cannibals: 3 Missionaries: 6)
+Current Boat Position: right
+
+
+Depth:12
+Current Node: 
+Left:(Cannibals: 4 Missionaries: 0)
+Right:(Cannibals: 2 Missionaries: 6)
+Current Boat Position: left
+
+
+Depth:13
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 0)
+Right:(Cannibals: 4 Missionaries: 6)
+Current Boat Position: right
+
+
+Depth:14
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 2)
+Right:(Cannibals: 4 Missionaries: 4)
+Current Boat Position: left
+
+
+Depth:15
+Current Node: 
+Left:(Cannibals: 1 Missionaries: 0)
+Right:(Cannibals: 5 Missionaries: 6)
+Current Boat Position: right
+
+
+Depth:16
+Current Node: 
+Left:(Cannibals: 1 Missionaries: 1)
+Right:(Cannibals: 5 Missionaries: 5)
+Current Boat Position: left
+
+
+Depth:17
+Current Node: 
+Left:(Cannibals: 0 Missionaries: 0)
+Right:(Cannibals: 6 Missionaries: 6)
+Current Boat Position: right
+
+-------------------------------------------------------
+
+6 Cannibals 6 Missionaries and a Boat of Capacity 5 (Question 2b)
+
+Depth:1
+Current Node: 
+Left:(Cannibals: 5 Missionaries: 5)
+Right:(Cannibals: 1 Missionaries: 1)
+Current Boat Position: right
+
+
+Depth:2
+Current Node: 
+Left:(Cannibals: 5 Missionaries: 6)
+Right:(Cannibals: 1 Missionaries: 0)
+Current Boat Position: left
+
+
+Depth:3
+Current Node: 
+Left:(Cannibals: 4 Missionaries: 4)
+Right:(Cannibals: 2 Missionaries: 2)
+Current Boat Position: right
+
+
+Depth:4
+Current Node: 
+Left:(Cannibals: 4 Missionaries: 6)
+Right:(Cannibals: 2 Missionaries: 0)
+Current Boat Position: left
+
+
+Depth:5
+Current Node: 
+Left:(Cannibals: 3 Missionaries: 3)
+Right:(Cannibals: 3 Missionaries: 3)
+Current Boat Position: right
+
+
+Depth:6
+Current Node: 
+Left:(Cannibals: 3 Missionaries: 6)
+Right:(Cannibals: 3 Missionaries: 0)
+Current Boat Position: left
+
+
+Depth:7
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 2)
+Right:(Cannibals: 4 Missionaries: 4)
+Current Boat Position: right
+
+
+Depth:8
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 6)
+Right:(Cannibals: 4 Missionaries: 0)
+Current Boat Position: left
+
+
+Depth:9
+Current Node: 
+Left:(Cannibals: 0 Missionaries: 6)
+Right:(Cannibals: 6 Missionaries: 0)
+Current Boat Position: right
+
+
+Depth:10
+Current Node: 
+Left:(Cannibals: 1 Missionaries: 6)
+Right:(Cannibals: 5 Missionaries: 0)
+Current Boat Position: left
+
+
+Depth:11
+Current Node: 
+Left:(Cannibals: 1 Missionaries: 1)
+Right:(Cannibals: 5 Missionaries: 5)
+Current Boat Position: right
+
+
+Depth:12
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 2)
+Right:(Cannibals: 4 Missionaries: 4)
+Current Boat Position: left
+
+
+Depth:13
+Current Node: 
+Left:(Cannibals: 2 Missionaries: 0)
+Right:(Cannibals: 4 Missionaries: 6)
+Current Boat Position: right
+
+
+Depth:14
+Current Node: 
+Left:(Cannibals: 3 Missionaries: 0)
+Right:(Cannibals: 3 Missionaries: 6)
+Current Boat Position: left
+
+
+Depth:15
+Current Node: 
+Left:(Cannibals: 1 Missionaries: 0)
+Right:(Cannibals: 5 Missionaries: 6)
+Current Boat Position: right
+
+
+Depth:16
+Current Node: 
+Left:(Cannibals: 1 Missionaries: 1)
+Right:(Cannibals: 5 Missionaries: 5)
+Current Boat Position: left
+
+
+Depth:17
+Current Node: 
+Left:(Cannibals: 0 Missionaries: 0)
+Right:(Cannibals: 6 Missionaries: 6)
+Current Boat Position: right
+
+-------------------------------------------------------
+
+'''
