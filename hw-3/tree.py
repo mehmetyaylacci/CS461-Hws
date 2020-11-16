@@ -25,12 +25,11 @@ class Tree:
       current_node_count += 1
 
     index = 0
-    while index < len(stack_nodes):
+    while index < 9:
       temp = stack_nodes.pop(0)
 
-      print(dict.values())
-      temp.data = dict.values()[index]
-      temp.letter = dict.keys()[index]
+      temp.data = list(dict.values())[index]
+      temp.letter = list(dict)[index]
 
       index += 1
 
@@ -39,14 +38,17 @@ class Tree:
 
     # bnf logic
     index = 0 
-    while index < 9:
+    while index < 13:
       temp = stack_nodes.pop(0)
       
       stack_nodes.append(temp.left)
       stack_nodes.append(temp.middle)
       stack_nodes.append(temp.right)
 
-      print(temp.data)
+      if temp.data == '':
+        print('*')
+      else:
+        print(temp.data)
 
       index += 1
 
