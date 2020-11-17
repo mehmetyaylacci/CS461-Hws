@@ -72,7 +72,10 @@ class Tree:
         self.left = None
         self.middle = None
         self.right = None
-        self.data = ''
+        self.data = -100
         self.letter = ''
         self.min = None
         self.max = None
+
+      def children(self):
+        return [self.left, self.middle, self.right]

@@ -1,2 +1,2 @@
 language = "undefined"
-run = "python hw-3/test_tree.py"
+run = "python hw-3/main.py"
