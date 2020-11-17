@@ -80,7 +80,8 @@ test = tree_input('A=5 B=3 C=1 D=2 E=5 F=4 G=1 H=3 I=3')
 T = Tree(test)
 print( minimax( T, 3))
 
-def alphabeta_rec( a_tree, depth, node, min, max):
+
+def alphabeta_rec(a_tree, depth, node, the_min, the_max):
   if depth == 0:
     return node.data
   
@@ -88,11 +89,12 @@ def alphabeta_rec( a_tree, depth, node, min, max):
     value = -100 # arbitrary
     
     for child in node.children():
-      value = max(value, int(alphabeta_rec(a_tree, depth - 1, child, min, max))) 
+      value = max(value, int(alphabeta_rec(
+          a_tree, depth - 1, child, the_min, the_max)))
 
-      max = max(value, max)
+      the_max = max(value, the_max)
 
-      if max > min:
+      if the_max >= the_min:
         break
     
     return value
@@ -101,11 +103,12 @@ def alphabeta_rec( a_tree, depth, node, min, max):
     value = 100 # arbitrary
 
     for child in node.children():
-      value = min(value, int(alphabeta_rec(a_tree, depth - 1, child, min, max)))
+      value = min(value, int(alphabeta_rec(
+          a_tree, depth - 1, child, the_min, the_max)))
     
-      min = min(value, min)
+      the_min = min(value, the_min)
 
-      if max > min:
+      if the_max >= the_min:
         break
 
     return value
