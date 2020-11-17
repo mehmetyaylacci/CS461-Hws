@@ -74,3 +74,5 @@ class Tree:
         self.right = None
         self.data = ''
         self.letter = ''
+        self.min = None
+        self.max = None
