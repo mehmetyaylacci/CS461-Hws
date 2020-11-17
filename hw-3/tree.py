@@ -7,11 +7,14 @@ class Tree:
     self.DEPTH = 2
     self.FIXED_NODES = 3
 
+    self.TOTAL = self.find_total_nodes_non()
+    self.LEAVES = self.find_leaves()
+
     stack_nodes = [self.root]
 
     # bfs logic
     current_node_count = 0
-    while current_node_count < 4:
+    while current_node_count < self.TOTAL - self.LEAVES:
       temp = stack_nodes.pop(0)
       
       temp.left = self.Node()
@@ -25,7 +28,7 @@ class Tree:
       current_node_count += 1
 
     index = 0
-    while index < 9:
+    while index < self.LEAVES:
       temp = stack_nodes.pop(0)
 
       temp.data = list(dict.values())[index]
@@ -38,7 +41,7 @@ class Tree:
 
     # bnf logic
     index = 0 
-    while index < 13:
+    while index < self.TOTAL:
       temp = stack_nodes.pop(0)
       
       stack_nodes.append(temp.left)
@@ -52,6 +55,17 @@ class Tree:
 
       index += 1
 
+  def find_total_nodes(self, x):
+    if x == 0:
+      return 1
+    else:
+      return self.FIXED_NODES**x + self.find_total_nodes(x-1)
+ 
+  def find_total_nodes_non(self):
+    return self.find_total_nodes(self.DEPTH)
+
+  def find_leaves(self):
+    return self.FIXED_NODES**self.DEPTH
   class Node:
       # create empty node
       def __init__(self):
