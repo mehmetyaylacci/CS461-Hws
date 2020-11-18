@@ -35,37 +35,41 @@ def tree_input(string):
     return answer_dictionary
 
 
-def minimax_rec( a_tree, depth, node, array):
+def minimax_rec( a_tree, depth, node, letter, answer):
   '''
   Recursive part of the minmax algorithm without implementing pruning
   '''
   if depth == 0:
+    answer = [letter] 
+    #letter.append(node.letter)
     return node.data
 
   elif depth % 2 == 0:
     value = -float("inf") # arbitrary
     
     for child in node.children():
-      next_value = int(minimax_rec(a_tree, depth - 1, child, array))
+      next_value = int(minimax_rec(a_tree, depth - 1, child, letter, answer))
       
       if next_value > value:
-        node.letter = child.letter
+        letter = child.letter # ??
       
       value = max(value, next_value) #if depth is even, it is a max level
-
+    
+    answer = [letter]
+    node.letter = letter
     return value
 
   else:
     value = float("inf") # arbitrary
-
     for child in node.children():
-      next_value = int(minimax_rec(a_tree, depth - 1, child, array))
+      next_value = int(minimax_rec(a_tree, depth - 1, child, letter, answer))
       
       if next_value < value:
-        node.letter = child.letter
-
+        letter = child.letter # ??
       value = min(value, next_value) #if depth is odd, it is a min level
 
+    answer = [letter]
+    node.letter = letter
     return value
 
 
@@ -73,13 +77,11 @@ def minimax( a_tree, DEPTH):
   '''
   Initiator function for the minimax algorithm
   '''
-  answer = []
+  answer =  []
   
-  value =  minimax_rec( a_tree, DEPTH - 1, a_tree.root, answer)
+  value =  minimax_rec( a_tree, DEPTH - 1, a_tree.root, '', answer)
   
-  print(answer)
   print('Letter is: ' + answer[0])
-  print('Value is: ' + str(value))
 
   return value
 
