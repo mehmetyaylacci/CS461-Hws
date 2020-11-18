@@ -40,33 +40,34 @@ def minimax_rec( a_tree, depth, node, array):
   Recursive part of the minmax algorithm without implementing pruning
   '''
   if depth == 0:
-    return node.data
+    letter = node.letter
+    return [node.data, letter]
 
   elif depth % 2 == 0:
     value = -float("inf") # arbitrary
     
     for child in node.children():
-      next_value = int(minimax_rec(a_tree, depth - 1, child, array))
+      next_value = minimax_rec(a_tree, depth - 1, child, array)
       
-      if next_value > value:
-        node.letter = child.letter
+      if int(next_value[0]) > value:
+        letter = next_value[1]
       
-      value = max(value, next_value) #if depth is even, it is a max level
+      value = max(value, int(next_value[0])) #if depth is even, it is a max level
 
-    return value
+    return [value, letter]
 
   else:
     value = float("inf") # arbitrary
 
     for child in node.children():
-      next_value = int(minimax_rec(a_tree, depth - 1, child, array))
+      next_value = minimax_rec(a_tree, depth - 1, child, array)
       
-      if next_value < value:
-        node.letter = child.letter
+      if int(next_value[0]) < value:
+        letter = next_value[1]
 
-      value = min(value, next_value) #if depth is odd, it is a min level
+      value = min(value, int(next_value[0])) #if depth is odd, it is a min level
 
-    return value
+    return [value, letter]
 
 
 def minimax( a_tree, DEPTH):
@@ -74,12 +75,11 @@ def minimax( a_tree, DEPTH):
   Initiator function for the minimax algorithm
   '''
   answer = []
-  
+
   value =  minimax_rec( a_tree, DEPTH - 1, a_tree.root, answer)
-  
-  print(answer)
-  print('Letter is: ' + answer[0])
-  print('Value is: ' + str(value))
+
+  print('Letter is: ' + value[1])
+  print('Value is: ' + str(value[0]))
 
   return value
 
@@ -89,29 +89,39 @@ def alphabeta_rec(a_tree, depth, node, the_min, the_max, letter):
   Recursive alpha beta pruning algorithm
   '''
   if depth == 0:
-    return node.data
+    letter = node.letter
+    return [node.data, letter]
+
   elif depth % 2 == 0:
     value = -float('inf')
     for child in node.children():
       value = max(value, int(alphabeta_rec(
-          a_tree, depth - 1, child, the_min, the_max, letter)))
-      the_max = max(value, the_max)
+          a_tree, depth - 1, child, the_min, the_max, letter)[0]))
+      the_max = max(value[0], the_max)
+      
       if the_max >= the_min:
         print(str(the_max), '>=', str(the_min))
         print('Pruned the value: ' + str(the_max))
+        letter = value[1]
         break
-    return value
+    
+    return [value, letter]
+  
   else:
     value = float('inf')
     for child in node.children():
       value = min(value, int(alphabeta_rec(
-          a_tree, depth - 1, child, the_min, the_max, letter)))
+          a_tree, depth - 1, child, the_min, the_max, letter)[0]))
+      
       the_min = min(value, the_min)
+      
       if the_max >= the_min:
         print(str(the_max), '>=', str(the_min))
-        print('Pruned the value: ' + str(the_min)) 
+        print('Pruned the value: ' + str(the_min))
+        letter = value[1]
         break
-    return value
+    
+    return [value, letter]
 
 def alphabeta( a_tree, DEPTH):
   '''
@@ -127,14 +137,14 @@ inp = 'A=5 B=3 C=1 D=2 E=5 F=4 G=1 H=3 I=3'
 print("Current input :", inp)
 inp = tree_input(inp)
 T = Tree(inp)
-print('Result from the minimax algorithm:', minimax(T, 3))
+print('Result from the minimax algorithm:', minimax(T, 3)[0])
 
 # user input for the minimax algorithm (question 2 of minimax)
 inp = str(input('Please enter 9 values in the domain Z, separated by spaces'))
 print("Current input :", inp)
 inp = tree_input(inp)
 T = Tree(inp)
-print('Result from the minimax algorithm:', minimax(T, 3))
+print('Result from the minimax algorithm:', minimax(T, 3)[0])
 
 # test data for the alphabeta algorithm (question 1 of alphabeta)
 inp = 'A=5 B=3 C=1 D=2 E=5 F=4 G=1 H=3 I=3'
