@@ -67,13 +67,9 @@ class Kd:
   ###
   def postorder(self):
     temp = self.root
-    print('Post')
+    print('\nPOST ORDER TRAVERSAL OF THE TREE\n')
     self.postorderTrav(temp)
-
-  def inorder(self):
-    temp = self.root
-    print('Inorder')
-    self.inorderTrav(temp)
+    print("\nEND OF POST ORDER TRAVERSAL\n")
   
   def postorderTrav(self, temp):
     if temp.left is not None:
@@ -81,13 +77,6 @@ class Kd:
     if temp.right is not None:   
       self.postorderTrav(temp.right)
     print(temp.data)
-
-  def inorderTrav(self, temp):
-    if temp.left is not None:
-      self.inorderTrav(temp.left)
-    print(temp.data)
-    if temp.right is not None:   
-      self.inorderTrav(temp.right)
   
   ###
   def kd_nearest_neighbor(self, query):
@@ -143,8 +132,7 @@ class Kd:
     return math.sqrt( ((node2.data[0] - node1.data[0]) ** 2) + ((node2.data[1] - node1.data[1]) ** 2))
 
   def __str__(self):
-    self.postorder() 
-    self.inorder()
+    self.postorder()
 
 # main method
 def main():
@@ -159,13 +147,20 @@ def main():
   kd = Kd(data)
   # kd.insert_random(data[0], data[1])
   kd.postorder()
-  print()
-  kd.inorder()
-
+  
+  print("Question 1")
   print(kd.kd_nearest_neighbor(Node([1, 4, "U1"])))
+  print("Question 2")
   print(kd.kd_nearest_neighbor(Node([1, 1, "U2"])))
+  print("Question 3")
   print(kd.kd_nearest_neighbor(Node([6, 6, "U3"])))
+  print("Question 4")
   print(kd.kd_nearest_neighbor(Node([6, 1, "U4"])))
+  print("Question 5")
+  ta_input = input("Please enter 2 space seperated integers : ")
+  print(ta_input.split(" "))
+  ta_node = Node([int(ta_input.split(" ")[0]), int(ta_input.split(" ")[1]), "U5-TA"])
+  print(kd.kd_nearest_neighbor(ta_node))
   
 if __name__ == "__main__":
   main()
