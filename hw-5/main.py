@@ -94,75 +94,43 @@ class Kd:
     not_found = True
     temp = self.root
     depth = 0
-    dict_of_dist = {} # defaultdict(list)
+    dict_of_dist = {}
     while not_found:
+      ###
+      case = self.euc_dist(temp, query) 
+      if case not in dict_of_dist.keys():
+        dict_of_dist[case] = [temp]
+      else:
+        dict_of_dist[case].append(temp)
+      
+      ###
       if depth % 2 == 0:
         print("Comparing {0} and {1}".format(temp.data, query.data))
         if temp.data[0] <= query.data[0]:
           if temp.right != None:
-            case = self.euc_dist(temp, query) 
-            if case not in dict_of_dist.keys():
-              dict_of_dist[case] = [temp]
-            else:
-              dict_of_dist[case].append(temp)
             temp = temp.right
           else:
-            case = self.euc_dist(temp, query) 
-            if case not in dict_of_dist.keys():
-              dict_of_dist[case] = [temp]
-            else:
-              dict_of_dist[case].append(temp)
             not_found = False
         else:
           if temp.left != None:
-            case = self.euc_dist(temp, query) 
-            if case not in dict_of_dist.keys():
-              dict_of_dist[case] = [temp]
-            else:
-              dict_of_dist[case].append(temp)
             temp = temp.left
           else:
-            case = self.euc_dist(temp, query) 
-            if case not in dict_of_dist.keys():
-              dict_of_dist[case] = [temp]
-            else:
-              dict_of_dist[case].append(temp)
-            temp = temp.right
             not_found = False
+      
+      ###
       elif depth % 2 == 1:
         print("Comparing {0} and {1}".format(temp.data, query.data))
         if temp.data[1] <= query.data[1]:
           if temp.right != None:
-            case = self.euc_dist(temp, query) 
-            if case not in dict_of_dist.keys():
-              dict_of_dist[case] = [temp]
-            else:
-              dict_of_dist[case].append(temp)
             temp = temp.right
           else:
-            case = self.euc_dist(temp, query) 
-            if case not in dict_of_dist.keys():
-              dict_of_dist[case] = [temp]
-            else:
-              dict_of_dist[case].append(temp)
             not_found = False
         else:
           if temp.left != None:
-            case = self.euc_dist(temp, query) 
-            if case not in dict_of_dist.keys():
-              dict_of_dist[case] = [temp]
-            else:
-              dict_of_dist[case].append(temp)
             temp = temp.left
           else:
-            case = self.euc_dist(temp, query) 
-            if case not in dict_of_dist.keys():
-              dict_of_dist[case] = [temp]
-            else:
-              dict_of_dist[case].append(temp)
             not_found = False
       depth += 1
-    # print(dict_of_dist)
     end = min(dict_of_dist.keys())
     return self.closest_str(dict_of_dist[end][0], query)
 
