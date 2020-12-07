@@ -1,2 +1,2 @@
 language = "undefined"
-run = "python hw-4/topsortex.py"
+run = "python hw-5/main.py"
