@@ -49,11 +49,11 @@ class Kd:
     not_inserted = True
     #the variable checks if the input has been inserted to the tree, if not, the variable is true, as set initially
     depth = 0
-    temp = self.root#root node for initial comparison
+    temp = self.root #root node for initial comparison
     while(not_inserted):
       ###
       if depth % 2 == 0:
-        if temp.data[0] <= data[0]:#if the x value of input is bigger than or equal to the x value at the node, the node is added to right
+        if temp.data[0] <= data[0]: #if the x value of input is bigger than or equal to the x value at the node, the node is added to right
           if temp.right == None:
             temp.right = Node(data)
             not_inserted = False
