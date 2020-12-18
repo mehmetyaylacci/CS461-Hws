@@ -25,7 +25,6 @@ class Graph:
         self.vertexes = []
         self.out = []
     
-    
     def topologicalSortUtil(self,v,visited,stack): 
       '''
       Recursive topological sorting function for the proper traversal
@@ -45,11 +44,17 @@ class Graph:
       visited = [False]*self.V 
       stack = [] 
       for i in range(self.V): 
+          if i < len(self.out):
+            print("Visiting: {} \n".format( self.out[ i]))
           if visited[i] == False: 
               self.topologicalSortUtil(i,visited,stack) 
       answer = []
       for index in range(self.V):
-        answer.append(self.vertexes[stack[self.V - index - 1]])
+        temp = self.vertexes[stack[self.V - index - 1]]
+
+        print("Adding: {} \n".format(temp))
+
+        answer.append(temp)
       return answer
   
 
@@ -71,7 +76,6 @@ class Graph:
       '''
       self.graph[u].append(v) 
       
-
 
 g = Graph(8)
 g.addEdge('fstream', 'iostream')
