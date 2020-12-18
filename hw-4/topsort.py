@@ -30,7 +30,6 @@ class Graph:
             self.graph[u] = [v]
         else:
             self.graph[u].append(v)
-        print("Added " + u + " to " + v, end = ", ")
 
     '''
     The topological sorting algorithm
